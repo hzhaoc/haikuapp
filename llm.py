@@ -10,6 +10,11 @@ llm_openai = ChatOpenAI(openai_api_key=key)
 
 
 if __name__ == '__main__':
-    res = llm_openai.invoke("generate a haiku")
+    # res = llm_openai.invoke("generate a haiku")
+    prefix = "comment on this haiku: "
+    haiku = "i live in a castle of my own make-believe. \
+             i am here, inside the castle, delusional. \
+             she is there, outside the castle, unreachable."
+    res = llm_openai.invoke(prefix + haiku)
     print(type(res))
     print(res.content)
