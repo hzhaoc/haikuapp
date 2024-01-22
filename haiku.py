@@ -1,12 +1,10 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for, session
 )
-from werkzeug.exceptions import abort
+# from werkzeug.exceptions import abort
 
-from haiku.auth import login_required
 from haiku.db import get_db
 from . import llm
-from flask import session
 
 
 bp = Blueprint('haiku', __name__)
@@ -59,10 +57,26 @@ def _critique(haiku):
     try:
         res = llm.llm_openai.invoke(prefix + haiku)
     except:
+        # this error can be surfaced to user to indicate our rate limit
         error = "some errors from our AI API, may be rate limit exceeded - we are working on it!"
         flash(error)
-    return {'title': 'haiku', 'body': res.content}
+        return
+    res = res.content
+    _commit_haiku(res)
+    return {'title': 'haiku', 'body': res}
 
+def _commit_haiku(haiku):
+    # if error, raise appropriate db error in the backend
+    #           and 500 internal server error to user 
+    # TODO: add try-except logic to flush the db error to service log 
+    #       without blocking client experience
+    db = get_db()
+    db.execute(
+        'INSERT INTO haiku (body)'
+        ' VALUES (?)',
+        (haiku,)
+    )
+    db.commit()
 
 # the page for response, either ai haiku, or ai resposne to user haiku
 @bp.route('/response')
