@@ -40,3 +40,17 @@ def init_db_command():
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+
+
+def commit_haiku(haiku):
+    # if error, raise appropriate db error in the backend
+    #           and 500 internal server error to user 
+    # TODO: add try-except logic to flush the db error to service log 
+    #       without blocking client experience
+    db = get_db()
+    db.execute(
+        'INSERT INTO haiku (body)'
+        ' VALUES (?)',
+        (haiku,)
+    )
+    db.commit()
