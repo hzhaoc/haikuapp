@@ -26,3 +26,10 @@ A small haiku web app that allow users to put in their haiku and get feedback fr
   - `flask --app haikuapp run`
 
 # demo
+- ai response to user haiku
+![reponse_before_submit](/demo/response_before_submit.png)
+![response_after_subimt](/demo/response_after_submit.png)
+
+- ai haiku generator
+![generator_before_submit](/demo/generator_before_submit.png.png)
+![generator_after_submit](/demo/generator_after_submit.png.png)
