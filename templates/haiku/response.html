@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Response{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<article class="">
+    <header>
+    <div>
+        <h1>{{ response['title'] }}</h1>
+    </div>
+    </header>
+    <p class="body">{{ response['body'] }}</p>
+</article>
+{% endblock %}
