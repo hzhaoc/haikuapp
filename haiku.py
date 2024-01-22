@@ -28,8 +28,6 @@ def generate():
 # the page to enter user haiku to get ai response
 @bp.route('/critique', methods=('GET','POST'))
 def critique():
-    # TODO: add request method  to render a reponse to user haiku
-    # TODO: save user haiku to db
     if request.method == 'POST':
         haiku = request.form['body']
         res = _critique(haiku)
