@@ -29,7 +29,7 @@ def create_app(test_config=None):
 
     app.register_blueprint(haiku.bp)
     # associate index endpoint with / so that 
-    # url_for('index') or url_for('blog.index') will both work,
+    # url_for('index') or url_for('haiku.index') will both work,
     # generating same url
     app.add_url_rule('/', endpoint='index')
     
