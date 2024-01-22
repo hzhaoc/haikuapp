@@ -11,12 +11,18 @@ A small haiku web app that allow users to put in their haiku and get feedback fr
 # to run the app (in linux terminal)
 - save a local copy of this repo
 - install python3
+- create and activate python virtual environment
+  - `python3 -m venv .venv`
+  - `. .venv/bin/activate`
 - install flask
   - `pip install Flask`
 - install langchain
   - `pip install langchain`
   - `pip install langchain-openai`
 - get openai api key from https://platform.openai.com/api-keys, save it under `haikuapp/llm/vault/openai`
-- create python virtual environment
-  - `python3 -m venv .venv`
-  - `. .venv/bin/activate`
+- Initialize db. From parent directory of `haikuapp`, run
+  `flask --app haikuapp init-db`
+- start app
+  - `flask --app haikuapp run`
+
+# demo
