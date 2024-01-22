@@ -19,9 +19,11 @@ A small haiku web app that allow users to put in their haiku and get feedback fr
 - install langchain
   - `pip install langchain`
   - `pip install langchain-openai`
-- get openai api key from https://platform.openai.com/api-keys, save it under `haikuapp/llm/vault/openai`
+- get openai api key from https://platform.openai.com/api-keys, 
+save it under   
+  - `haikuapp/llm/vault/openai`
 - Initialize db. From parent directory of `haikuapp`, run
-  `flask --app haikuapp init-db`
+  - `flask --app haikuapp init-db`
 - start app
   - `flask --app haikuapp run`
 
